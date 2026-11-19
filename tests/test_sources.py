@@ -33,9 +33,11 @@ class SourceContract(unittest.TestCase):
                     self.assertIn(type(row[field]).__name__, accepted, (table, field))
 
     def test_source_relationships(self):
-        self.references('leases', 'area', 'areas', 'area')
-        self.references('amendments', 'line', 'leases', 'line')
-        first, second = self.rows('leases')[:2]
-        self.assertEqual(first['lease_id'], second['lease_id'])
-        self.assertNotEqual(first['source'], second['source'])
-        self.assertTrue(any(row['income'] is None for row in self.rows('survey')))
+        self.references('frame', 'area', 'areas', 'area')
+        self.references('contracts', 'lease', 'frame', 'lease')
+        self.references('interviews', 'household', 'frame', 'household')
+        self.references('claims', 'lease', 'contracts', 'lease')
+        self.references('receipts', 'lease', 'contracts', 'lease')
+        self.assertGreater(len(self.rows('frame')), 1000)
+        self.assertTrue(any(row['income_low'] is None for row in self.rows('interviews')))
+        self.assertTrue(any(len(row['possible_areas']) > 1 for row in self.rows('claims')))
