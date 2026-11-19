@@ -4,4 +4,64 @@
 
 `data/supplies.json` 按业务表保存记录，`data/fields.json` 记录各表字段及资料中出现的值类型。`frame` 记录各季住户抽样单位、片区、分层和两阶段入样概率；重复住房可能对应不同住户。`interviews` 保存收入区间，缺失端点表示没有收入证据。`contracts` 是租约事实，`reports` 是承租人或代理的申报行，`claims` 给出可能的片区归属与租金份额。租金份额受同一合同总额约束。`standards` 记录地区固定分层权重、覆盖及比较标准；`receipts` 可提供新份额或撤销旧证据。`requests`、`ledger` 和 `budgets` 是申请、已签收/预留金额及资金池，`inquiries` 和 `work_roster` 是调查任务与可用工时。
 
-使用 Linux、Python 3.11 及标准库运行 `python3 -m unittest discover -s tests -v`，检查数据字段、类型和关键关联。资料仓库不包含分析结果或办理入口。
+使用 Linux、Python 3.11 及标准库运行 `python3 -m unittest discover -s tests -v`，检查数据字段、类型和关键关联。
+
+# 分析流程（analysis/）
+
+`analysis/` 是离线分析与办理入口，把季度调查做到可供拨款会复议，只用标准库。
+
+## 运行
+
+```bash
+python3 -m analysis.cli report            # 季度调查分析报告（负担分布、趋势、定档、台账、资金池）
+python3 -m analysis.cli review            # 按当前证据复核台账（暂停/复议/更正登记）
+python3 -m analysis.cli plan              # 取证计划（影响评估 + 工时与回收期安排）
+python3 -m analysis.cli sign A3 1         # 签收一档（当前证据可支持且预算够才受理）
+python3 -m analysis.cli reserve A3 1      # 预留一档
+python3 -m analysis.cli suspend L-A1 --reason 理由
+python3 -m analysis.cli release L-A1      # 拨款会解除（资金才回余额）
+python3 -m analysis.cli reconsider L-A0 --note 理由
+python3 -m analysis.cli query L-A0        # 按签收编号回查：当时范围与理由 + 后来更正
+python3 -m analysis.cli receive E9 L-2-0-8-家庭-0 H-0-8-家庭-0 --areas 沿江 --share 0.43 0.5
+```
+
+全局参数：`--source` 资料路径，`--state` 办理状态文件（默认 `state/office_state.json`），
+`--as-of` 证据基准日，`--json` 机器可读输出。签收、暂停、解除、复议、回执登记都写入
+状态文件，影响之后的查询与办理，不是一次性导出的建议。
+
+## 口径与估计
+
+- 调查单位是住户；代理重复报送不重复计户。抽样片区不一定是承担援助的片区，
+  归属按申报与回执的候选集合；同一住户跨季记录不作为两个独立样本。
+- 户月负担 = 分摊比例 ×（月租 ×（30 − 免租日）/30 + 水电）；负担率 = 户月负担 / 月收入。
+  收入区间按上下界解释；拒答不补成中点或零，负担状态完全未知。
+- 同一合同各户分摊合计为 1，据此互相收紧；并存有效回执冲突时标出不能共同成立
+  的证据及受影响范围，冲突户的相关属性按未知处理，其他片区继续可用。
+- 片区与合并地域一律从原住户重新估计（设计权重 = 1/(p_psu × p_house)），
+  保留归属与分摊的联合限制，不把各地极端值相加；待定归属户在合并地域内是
+  确定成员。比例与中位数按 standards 的固定住户构成标准化，两季同构。
+- 抽样不确定性（PSU 末级群线性化方差，同一住房同 PSU，跨季轮换面板用共同
+  PSU 配对协方差）与事实未确认的上下界分开报告。层覆盖不足（< min_psu）、
+  趋势抽样半宽超过 max_trend_halfwidth_pp、或修订后失去支持的项，标为不能
+  比较，不重配该层权重。区间上限不证实结论。
+- 定档按可支持的上升幅度：支持下限 = 趋势下界估计 − 抽样半宽，达到
+  change_pp × 档位倍率才签收。选项分为可签收（全部联合解释下成立且预算够）、
+  待查（上限所示的潜在支持，待回执厘清）、被预算挡住、无支持。同一资金池内
+  一份共同凭据不能以相斥解释签出两笔钱。
+- 预算先扣已签收款和有效预留；复核不能签收的预留暂停并标注理由，解除前仍
+  占款；已签收款只能立复议，不回到余额。
+- 取证计划按按时回收、可用工时、证据可能给出的结论与受影响款项安排；共用
+  证据由有权街道核查，其他街道可加入但不重复占用工时；各派单可能释放的
+  金额不能简单相加。
+
+## 模块
+
+- `conventions.py` 负担率口径（唯一出处）
+- `sources.py` 资料载入与索引
+- `evidence.py` 证据链、冲突、调查记录组装、报送辨别
+- `estimate.py` 设计权重、比例/分布/趋势估计、覆盖与精度标记
+- `tiers.py` 定档与选项划分
+- `ledger.py` 台账状态机、资金池、快照与更正、回查
+- `inquiries.py` 派单影响评估与取证计划
+- `report.py` 分析汇总；`cli.py` 办理入口
+
