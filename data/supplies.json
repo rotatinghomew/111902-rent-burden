@@ -1,0 +1,340 @@
+{
+  "synthetic": true,
+  "tables": {
+    "areas": [
+      {
+        "area": "东湾",
+        "group": "河东组"
+      },
+      {
+        "area": "沿江",
+        "group": "河东组"
+      },
+      {
+        "area": "北台",
+        "group": "北部组"
+      }
+    ],
+    "standard_weights": [
+      {
+        "region": "东湾",
+        "family_new": 0.55,
+        "solo_renewal": 0.45,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      },
+      {
+        "region": "沿江",
+        "family_new": 0.4,
+        "solo_renewal": 0.6,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      },
+      {
+        "region": "河东组",
+        "family_new": 0.5,
+        "solo_renewal": 0.5,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      },
+      {
+        "region": "北台",
+        "family_new": 0.3,
+        "solo_renewal": 0.7,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      },
+      {
+        "region": "北部组",
+        "family_new": 0.3,
+        "solo_renewal": 0.7,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      },
+      {
+        "region": "全区",
+        "family_new": 0.45,
+        "solo_renewal": 0.55,
+        "coverage": 2,
+        "change_pp": 4,
+        "high_burden": 0.4
+      }
+    ],
+    "leases": [
+      {
+        "line": "L01",
+        "lease_id": "A1",
+        "household": "H1",
+        "area": "东湾",
+        "period": "2026-Q1",
+        "family": "family",
+        "stage": "new",
+        "rent": 2200,
+        "utilities": 130,
+        "free_days": 0,
+        "source": "代理"
+      },
+      {
+        "line": "L02",
+        "lease_id": "A1",
+        "household": "H1",
+        "area": "东湾",
+        "period": "2026-Q1",
+        "family": "family",
+        "stage": "new",
+        "rent": 2200,
+        "utilities": 130,
+        "free_days": 0,
+        "source": "租户"
+      },
+      {
+        "line": "L03",
+        "lease_id": "A2",
+        "household": "H2",
+        "area": "东湾",
+        "period": "2026-Q1",
+        "family": "solo",
+        "stage": "renewal",
+        "rent": 1550,
+        "utilities": 100,
+        "free_days": 0,
+        "source": "租户"
+      },
+      {
+        "line": "L04",
+        "lease_id": "A3",
+        "household": "H3",
+        "area": "东湾",
+        "period": "2026-Q1",
+        "family": "family",
+        "stage": "new",
+        "rent": 2350,
+        "utilities": 140,
+        "free_days": 2,
+        "source": "租户"
+      },
+      {
+        "line": "L05",
+        "lease_id": "A4",
+        "household": "H4",
+        "area": "东湾",
+        "period": "2026-Q1",
+        "family": "solo",
+        "stage": "renewal",
+        "rent": 1700,
+        "utilities": 110,
+        "free_days": 0,
+        "source": "租户"
+      },
+      {
+        "line": "L06",
+        "lease_id": "B1",
+        "household": "H1",
+        "area": "东湾",
+        "period": "2026-Q2",
+        "family": "family",
+        "stage": "new",
+        "rent": 2600,
+        "utilities": 140,
+        "free_days": 0,
+        "source": "代理"
+      },
+      {
+        "line": "L07",
+        "lease_id": "B2",
+        "household": "H2",
+        "area": "东湾",
+        "period": "2026-Q2",
+        "family": "solo",
+        "stage": "renewal",
+        "rent": 1660,
+        "utilities": 110,
+        "free_days": 1,
+        "source": "租户"
+      },
+      {
+        "line": "L08",
+        "lease_id": "B3",
+        "household": "H3",
+        "area": "东湾",
+        "period": "2026-Q2",
+        "family": "family",
+        "stage": "new",
+        "rent": 2710,
+        "utilities": 150,
+        "free_days": 1,
+        "source": "租户"
+      },
+      {
+        "line": "L09",
+        "lease_id": "B4",
+        "household": "H4",
+        "area": "东湾",
+        "period": "2026-Q2",
+        "family": "solo",
+        "stage": "renewal",
+        "rent": 1760,
+        "utilities": 115,
+        "free_days": 0,
+        "source": "租户"
+      },
+      {
+        "line": "L10",
+        "lease_id": "B5",
+        "household": "H5",
+        "area": "沿江",
+        "period": "2026-Q2",
+        "family": "family",
+        "stage": "new",
+        "rent": 2560,
+        "utilities": 120,
+        "free_days": 0,
+        "source": "代理"
+      }
+    ],
+    "survey": [
+      {
+        "response": "S01",
+        "household": "H1",
+        "period": "2026-Q1",
+        "panel": "P1",
+        "weight": 1.3,
+        "income": [
+          5100,
+          5900
+        ]
+      },
+      {
+        "response": "S02",
+        "household": "H2",
+        "period": "2026-Q1",
+        "panel": "P1",
+        "weight": 1.5,
+        "income": [
+          3700,
+          4100
+        ]
+      },
+      {
+        "response": "S03",
+        "household": "H3",
+        "period": "2026-Q1",
+        "panel": "P1",
+        "weight": 1.3,
+        "income": [
+          5000,
+          5300
+        ]
+      },
+      {
+        "response": "S04",
+        "household": "H4",
+        "period": "2026-Q1",
+        "panel": "P1",
+        "weight": 1.5,
+        "income": [
+          3500,
+          4000
+        ]
+      },
+      {
+        "response": "S05",
+        "household": "H1",
+        "period": "2026-Q2",
+        "panel": "P2",
+        "weight": 1.2,
+        "income": [
+          5100,
+          5900
+        ]
+      },
+      {
+        "response": "S06",
+        "household": "H2",
+        "period": "2026-Q2",
+        "panel": "P2",
+        "weight": 1.7,
+        "income": [
+          3900,
+          4100
+        ]
+      },
+      {
+        "response": "S07",
+        "household": "H3",
+        "period": "2026-Q2",
+        "panel": "P2",
+        "weight": 1.2,
+        "income": [
+          4800,
+          5100
+        ]
+      },
+      {
+        "response": "S08",
+        "household": "H4",
+        "period": "2026-Q2",
+        "panel": "P2",
+        "weight": 1.7,
+        "income": [
+          3600,
+          4150
+        ]
+      },
+      {
+        "response": "S09",
+        "household": "H5",
+        "period": "2026-Q2",
+        "panel": "P2",
+        "weight": 1.2,
+        "income": null
+      }
+    ],
+    "listings": [
+      {
+        "listing": "M1",
+        "area": "东湾",
+        "period": "2026-Q2",
+        "rent": 3500
+      },
+      {
+        "listing": "M2",
+        "area": "北台",
+        "period": "2026-Q2",
+        "rent": 3600
+      }
+    ],
+    "amendments": [
+      {
+        "amendment": "R1",
+        "line": "L08",
+        "received_date": "2026-07-04",
+        "old_area": "东湾",
+        "new_area": "沿江"
+      }
+    ],
+    "council": [
+      {
+        "decision": "D1",
+        "region": "东湾",
+        "period": "2026-Q2",
+        "basis_date": "2026-07-02",
+        "status": "调查单已发",
+        "ref": "R1范围核实"
+      },
+      {
+        "decision": "D2",
+        "region": "河东组",
+        "period": "2026-Q2",
+        "basis_date": "2026-07-02",
+        "status": "已采纳",
+        "ref": "存量援助复核"
+      }
+    ]
+  }
+}

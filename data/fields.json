@@ -1,0 +1,137 @@
+{
+  "areas": {
+    "area": [
+      "str"
+    ],
+    "group": [
+      "str"
+    ]
+  },
+  "standard_weights": {
+    "region": [
+      "str"
+    ],
+    "family_new": [
+      "float"
+    ],
+    "solo_renewal": [
+      "float"
+    ],
+    "coverage": [
+      "int"
+    ],
+    "change_pp": [
+      "int"
+    ],
+    "high_burden": [
+      "float"
+    ]
+  },
+  "leases": {
+    "line": [
+      "str"
+    ],
+    "lease_id": [
+      "str"
+    ],
+    "household": [
+      "str"
+    ],
+    "area": [
+      "str"
+    ],
+    "period": [
+      "str"
+    ],
+    "family": [
+      "str"
+    ],
+    "stage": [
+      "str"
+    ],
+    "rent": [
+      "int"
+    ],
+    "utilities": [
+      "int"
+    ],
+    "free_days": [
+      "int"
+    ],
+    "source": [
+      "str"
+    ]
+  },
+  "survey": {
+    "response": [
+      "str"
+    ],
+    "household": [
+      "str"
+    ],
+    "period": [
+      "str"
+    ],
+    "panel": [
+      "str"
+    ],
+    "weight": [
+      "float"
+    ],
+    "income": [
+      "NoneType",
+      "list"
+    ]
+  },
+  "listings": {
+    "listing": [
+      "str"
+    ],
+    "area": [
+      "str"
+    ],
+    "period": [
+      "str"
+    ],
+    "rent": [
+      "int"
+    ]
+  },
+  "amendments": {
+    "amendment": [
+      "str"
+    ],
+    "line": [
+      "str"
+    ],
+    "received_date": [
+      "str"
+    ],
+    "old_area": [
+      "str"
+    ],
+    "new_area": [
+      "str"
+    ]
+  },
+  "council": {
+    "decision": [
+      "str"
+    ],
+    "region": [
+      "str"
+    ],
+    "period": [
+      "str"
+    ],
+    "basis_date": [
+      "str"
+    ],
+    "status": [
+      "str"
+    ],
+    "ref": [
+      "str"
+    ]
+  }
+}
